@@ -20,6 +20,7 @@ def test_parse_credits_without_credit_count():
     with pytest.raises(InvalidRequest):
         parse_credits("How much is tuition?")
 
+
 def test_parse_credits_retake_before_credits():
     assert parse_credits("retake 2 for 18 credits") == (18, 2)
 
