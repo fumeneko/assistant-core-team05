@@ -36,3 +36,7 @@ def test_route_unknown():
 
 def test_route_does_not_match_keyword_inside_word():
     assert route("This is a nice day", set()) == Intent.UNKNOWN
+
+
+def test_route_does_not_match_thi_inside_anything():
+    assert route("Anything else?", set()) == Intent.UNKNOWN
