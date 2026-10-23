@@ -2,6 +2,7 @@
 
 from assistant_core.errors import InvalidRequest
 
+
 def parse_credits(text: str) -> tuple[int, int]:
     """Extract credit count and retake count from a tuition question."""
     words = text.lower()
