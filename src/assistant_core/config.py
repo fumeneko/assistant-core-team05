@@ -1,4 +1,3 @@
-
 """Read and validate assistant configuration."""
 
 import os
@@ -31,9 +30,7 @@ def load_settings(env_file: str | None = ".env") -> Settings:
             llm_provider=os.getenv("LLM_PROVIDER", "stub"),
             llm_api_key=os.getenv("LLM_API_KEY") or None,
             credit_rate_vnd=int(os.getenv("CREDIT_RATE_VND", "450000")),
-            retake_multiplier=float(
-                os.getenv("RETAKE_MULTIPLIER", "1.5")
-            ),
+            retake_multiplier=float(os.getenv("RETAKE_MULTIPLIER", "1.5")),
             max_credits=int(os.getenv("MAX_CREDITS", "30")),
             log_level=os.getenv("LOG_LEVEL", "INFO"),
         )
@@ -41,8 +38,6 @@ def load_settings(env_file: str | None = ".env") -> Settings:
         raise ConfigError("Invalid environment configuration") from None
 
     if settings.llm_provider != "stub" and not settings.llm_api_key:
-        raise ConfigError(
-            "LLM_API_KEY is required for a non-stub provider"
-        )
+        raise ConfigError("LLM_API_KEY is required for a non-stub provider")
 
     return settings

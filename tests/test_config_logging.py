@@ -1,4 +1,3 @@
-
 """Tests for M2 configuration and logging."""
 
 import json

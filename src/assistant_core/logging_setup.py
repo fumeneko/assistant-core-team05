@@ -1,4 +1,3 @@
-
 """Configure structured JSON logging."""
 
 import json
