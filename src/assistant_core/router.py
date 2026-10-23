@@ -6,10 +6,7 @@ from assistant_core.models import Intent
 
 
 def _contains_keyword(text: str, keywords: tuple[str, ...]) -> bool:
-    return any(
-        re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", text)
-        for keyword in keywords
-    )
+    return any(re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", text) for keyword in keywords)
 
 
 def route(text: str, office_names: set[str]) -> Intent:
@@ -21,11 +18,7 @@ def route(text: str, office_names: set[str]) -> Intent:
     ):
         return Intent.FEE
 
-    if any(
-        office.casefold() in normalized
-        for office in office_names
-        if office.strip()
-    ):
+    if any(office.casefold() in normalized for office in office_names if office.strip()):
         return Intent.OFFICE
 
     if _contains_keyword(
