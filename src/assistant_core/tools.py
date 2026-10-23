@@ -19,12 +19,8 @@ def parse_credits(text: str) -> tuple[int, int]:
 
         number = int(word)
 
-        previous_is_retake = (
-            i > 0 and words[i - 1].startswith("retake")
-        )
-        next_is_retake = (
-            i + 1 < len(words) and words[i + 1].startswith("retake")
-        )
+        previous_is_retake = i > 0 and words[i - 1].startswith("retake")
+        next_is_retake = i + 1 < len(words) and words[i + 1].startswith("retake")
 
         if previous_is_retake or next_is_retake:
             retake = number
@@ -35,7 +31,6 @@ def parse_credits(text: str) -> tuple[int, int]:
         raise InvalidRequest("Credit count must be positive.")
 
     return credits, retake
-
 
 
 def tuition(
