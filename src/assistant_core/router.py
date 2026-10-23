@@ -1,4 +1,5 @@
 """Deterministic routing for student questions."""
+
 import re
 
 from assistant_core.models import Intent
