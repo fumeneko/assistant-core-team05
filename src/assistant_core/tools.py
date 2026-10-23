@@ -3,9 +3,14 @@
 from assistant_core.errors import InvalidRequest
 
 
+
 def parse_credits(text: str) -> tuple[int, int]:
     """Extract credit count and retake count from a tuition question."""
-    words = text.lower().replace("?", " ").split()
+    words = text.lower()
+    for char in "?,.;:!":
+        words = words.replace(char, " ")
+    words = words.split()
+
     credits = 0
     retake = 0
 
@@ -15,7 +20,14 @@ def parse_credits(text: str) -> tuple[int, int]:
 
         number = int(word)
 
-        if i + 1 < len(words) and words[i + 1].startswith("retake"):
+        previous_is_retake = (
+            i > 0 and words[i - 1].startswith("retake")
+        )
+        next_is_retake = (
+            i + 1 < len(words) and words[i + 1].startswith("retake")
+        )
+
+        if previous_is_retake or next_is_retake:
             retake = number
         elif credits == 0:
             credits = number
@@ -24,6 +36,7 @@ def parse_credits(text: str) -> tuple[int, int]:
         raise InvalidRequest("Credit count must be positive.")
 
     return credits, retake
+
 
 
 def tuition(
