@@ -1,13 +1,13 @@
 """Deterministic routing for student questions."""
 import re
 
+from assistant_core.models import Intent
+
 def _contains_keyword(text: str, keywords: tuple[str, ...]) -> bool:
     return any(
         re.search(rf"(?<!\w){re.escape(keyword)}(?!\w)", text)
         for keyword in keywords
     )
-
-from assistant_core.models import Intent
 
 
 def route(text: str, office_names: set[str]) -> Intent:
