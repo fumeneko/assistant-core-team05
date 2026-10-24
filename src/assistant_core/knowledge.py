@@ -109,11 +109,7 @@ class Handbook:
 
     def search(self, query: str) -> Rule | None:
         def keywords(text: str) -> set[str]:
-            return {
-                word
-                for word in re.findall(r"[a-z0-9]+", text.casefold())
-                if len(word) > 3
-                }
+            return {word for word in re.findall(r"[a-z0-9]+", text.casefold()) if len(word) > 3}
 
         query_words = keywords(query)
 
