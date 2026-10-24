@@ -150,6 +150,7 @@ def test_stub_responder_failure():
     with pytest.raises(ProviderError):
         StubLLMResponder(fail=True).explain("thesis", rule)
 
+
 def test_handbook_search_ignores_common_short_words(tmp_path):
     path = tmp_path / "handbook.json"
     path.write_text(
