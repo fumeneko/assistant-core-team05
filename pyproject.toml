@@ -19,6 +19,7 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 120
+exclude = ["lab03/monolith/assistant_monolith.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "BLE"]
